@@ -21,19 +21,19 @@ fun createMaze(numRows: Int, numCols: Int): Maze {
 
 private fun generateMaze(cRow: Int,
                          cCol: Int,
-                         maze: Array<Array<Cell>>) {
-    val numRows = maze.size
-    val numCols = maze[0].size
+                         mazeArr: Array<Array<Cell>>) {
+    val numRows = mazeArr.size
+    val numCols = mazeArr[0].size
     val dirs: MutableList<Direction> = Direction.values().toMutableList()
     dirs.shuffle()
     dirs.forEach { dir ->
-        val nRow = cRow + dir.dx
-        val nCol = cCol + dir.dy
+        val nRow = cRow + dir.dR
+        val nCol = cCol + dir.dC
         if (inside(nRow, numRows) && inside(nCol, numCols)
-            && maze[nRow][nCol].wallIndicator == 0) {
-            maze[cRow][cCol].wallIndicator = dir.bit or maze[cRow][cCol].wallIndicator
-            maze[nRow][nCol].wallIndicator = dir.opposite.bit or maze[nRow][nCol].wallIndicator
-            generateMaze(nRow, nCol, maze)
+            && mazeArr[nRow][nCol].wallIndicator == 0) {
+            mazeArr[cRow][cCol].wallIndicator = dir.bit or mazeArr[cRow][cCol].wallIndicator
+            mazeArr[nRow][nCol].wallIndicator = dir.opposite.bit or mazeArr[nRow][nCol].wallIndicator
+            generateMaze(nRow, nCol, mazeArr)
         }
     }
 }

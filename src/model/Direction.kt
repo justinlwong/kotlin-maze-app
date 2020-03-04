@@ -6,23 +6,23 @@ package model
  * @author Justin Wong
  */
 enum class Direction(val bit: Int,
-                     val dx: Int,
-                     val dy: Int) {
+                     val dR: Int,
+                     val dC: Int) {
 
 
-    N(1, 0, -1) {
+    N(1, -1, 0) {
         override val opposite: Direction
             get() = S
     },
-    S(2, 0, 1) {
+    S(2, 1, 0) {
         override val opposite: Direction
             get() = N
     },
-    E(4, 1, 0) {
+    E(4, 0, 1) {
         override val opposite: Direction
             get() = W
     },
-    W(8, -1, 0) {
+    W(8, 0, -1) {
         override val opposite: Direction
             get() = E
     };

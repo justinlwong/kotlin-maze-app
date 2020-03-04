@@ -19,8 +19,8 @@ class Maze(private val arr: Array<Array<Cell>>) {
         val numRows = arr.size
         val numCols = arr[0].size
         val output = StringBuilder()
-        (0 until numCols).forEach { col ->
-            (0 until numRows).forEach { row ->
+        (0 until numRows).forEach { row ->
+            (0 until numCols).forEach { col ->
                 val northBoundary = when {
                     !arr[row][col].canGoNorth() -> "+---"
                     else -> "+   "
@@ -28,7 +28,7 @@ class Maze(private val arr: Array<Array<Cell>>) {
                 output.append(northBoundary)
             }
             output.appendln("+")
-            (0 until numRows).forEach { row ->
+            (0 until numCols).forEach { col ->
                 val westBoundary = when {
                     !arr[row][col].canGoWest() -> "|   "
                     else -> "    "
@@ -39,10 +39,10 @@ class Maze(private val arr: Array<Array<Cell>>) {
         }
 
         // draw the bottom line
-        (0 until numRows).forEach { _ ->
+        (0 until numCols).forEach { _ ->
             output.append("+---")
         }
-        output.appendln("+")
+        output.append("+")
         return output.toString()
     }
 }
