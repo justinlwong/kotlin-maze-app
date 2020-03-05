@@ -9,7 +9,6 @@ enum class Direction(val bit: Int,
                      val dR: Int,
                      val dC: Int) {
 
-
     N(1, -1, 0) {
         override val opposite: Direction
             get() = S

@@ -1,19 +1,25 @@
 package model
 
-import java.lang.StringBuilder
+import utils.inside
 
 /**
  * A wrapper class for maze which is a 2-D array for [Cell]s
  *
  * @author Justin Wong
  */
-class Maze(private val arr: Array<Array<Cell>>) {
-    val numRows: Int = arr.size
-    val numCols: Int = arr[0].size
 
-    fun display() {
-        print(toString())
-    }
+typealias GridPosition = Pair<Int, Int>
+
+class Maze(val arr: Array<Array<Cell>>) {
+    private val numRows: Int = arr.size
+    private val numCols: Int = arr[0].size
+
+    fun display() = print(toString())
+
+    fun getNeighboursMap(pos: GridPosition): Map<Direction, GridPosition> = Direction.values()
+        .map { dir -> dir to GridPosition(pos.first + dir.dR, pos.second + dir.dC)}
+        .toMap()
+        .filterValues { nPos -> inside(nPos.first, numRows) && inside(nPos.second, numCols)}
 
     override fun toString(): String {
         val numRows = arr.size
